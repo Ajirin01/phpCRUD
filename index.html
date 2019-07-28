@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>curd test</title>
+</head>
+<body>
+        <a href="handler.php?method=get&value=2">send</a>
+
+        <form action="handler.php" method="POST">
+            <input type="text" name="username" id="">
+            <input type="text" name="email" id="">
+            <input type="submit" value="submit" name="submit">
+        </form>
+
+        <a href="handler.php?delete&id=2">delete item</a><br>
+        <a href="handler.php?update&id=2">edit item</a><br>
+        <a href="handler.php?show&id=2">show item</a>
+        <form action="handler.php" method="POST" enctype="multipart/form-data" name="up">
+            <fieldset>
+                <legend>
+                    image upload fild
+                </legend>
+                <input type="file" name="image" id="img" required><br>
+        <input type="submit" value="upload file" name="upload" >
+            </fieldset>
+        
+        </form>
+
+        <form action="handler.php" method="POST" enctype="multipart/form-data">
+            <fieldset>
+                <legend>
+                  multiple images upload fild
+                </legend>
+                <input type="text" name="itemName" id="" placeholder="item_Name"><br>
+                <input type="file" name="image[]" id="img" required multiple><br>
+        <input type="submit" value="upload files" name="upload_files" >
+            </fieldset>
+        
+        </form>
+        <a href="handler.php?all">show All</a>
+</body>
+</html>

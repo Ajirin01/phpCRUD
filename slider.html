@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+  <meta charset="utf-8">
+  <title>Swiper demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+  <!-- Link Swiper's CSS -->
+  <link rel="stylesheet" href="dist/css/swiper.min.css">
+  <script src="angular.js"></script>
+ 
+
+  <!-- Demo styles -->
+  <style>
+    /* html, body {
+      position: relative;
+      height: 100%;
+    } */
+    body {
+      background: #eee;
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      color:#000;
+      margin: 0;
+      padding: 0;
+    }
+    img{
+      width: inherit;
+      height: inherit;
+    }
+
+    .main-container{
+      width: 300px;
+      height: 300px;
+      position: relative;
+      margin: 0 auto;
+      margin-top: 10%
+    }
+    .swiper-container {
+      width: 100%;
+      height: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+
+      /* Center slide text vertically */
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+    }
+  </style>
+</head>
+<body ng-controller="cont">
+  <div class="main-container">
+    
+  
+  <!-- Swiper -->
+  <div class="swiper-container">
+    <div class="swiper-wrapper" >
+      <!-- here wee load the images array from the data base into the slider  -->
+      <div class="swiper-slide"  ng-repeat="image in images"><img src="images/{{image}}"></div>
+      
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+    <!-- Add Arrows -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
+</div>
+  <!-- Swiper JS -->
+  <script src="dist/js/swiper.min.js"></script>
+
+  <!-- Initialize Swiper -->
+  <script>
+    var swiper = new Swiper('.swiper-container', {
+      slidesPerView: 1,
+      spaceBetween: 30,
+      loop: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+  </script>
+  <script>
+  var app= angular.module('myApp',[]);
+  app.controller("cont",['$scope','$http', function($scope,$http){
+    
+    $http.get("handler.php?id=4").then(function(response){
+      $scope.images=JSON.parse(response.data.images);
+      console.log($scope.images);
+    });
+  }]);
+  </script>
+</body>
+</html>
